@@ -14,12 +14,17 @@
 class class_product //класс продукт
 {
     public $title = "Первый товар";
-    public $price = 0;
+    private $price = 0;
     
     function __construct($title, $price) //конструктор
     {
         $this->title = $title;
         $this->price = $price;
+    }
+    
+    public function getPrice() //функция вывода цены
+    {
+        return $this->price;
     }
 }
 
@@ -27,16 +32,16 @@ class Saller
 {
     function sale(class_product $product, $sale)
     {
-        $product->price = $product->price -($product->price*$sale);
-        return $product->price;
+//        $product->price = $product->price -($product->price*$sale);
+//        return $product->price;
+        return $product->getPrice()-($product->getPrice()*$sale);
     }
 }
 
 $product = new class_product("Часы", 1000);
 $saler = new Saller();
 
-echo $product->title." без скидки: ".$product->price.", со скидкой: ". $saler->sale($product, 0.1);
-echo "<br/".$saler->sale($product, 0.1);
-
-
-// https://www.youtube.com/watch?v=dsgqs9ZSUR8 11
+echo $product->title." без скидки: ".$saler->sale($product, 0.0) 
+.", со скидкой: ".$saler->sale($product, 0.1);
+//echo "<br/>".$saler->sale($product, 0.1)." скидка 10%";
+//echo "<br/>".$saler->sale($product, 0)." скидка 0";
