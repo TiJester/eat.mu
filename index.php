@@ -15,9 +15,11 @@ and open the template in the editor.
         <header>
 <!--шапка-->
     Привет Шапка
-        <?php
-        // put your code here
-        ?>          
+    <br/>
+    <form name="main" action="main.php" method="GET">
+        <input type="text" name="user" value="user" />
+        <input type="submit" value="Показать" />
+    </form>         
         </header>
 <!--шапка-->
 <!--тело-->
