@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}TiJester
+${licensePrefix}UA Odessa ${licensePrefix}
+<#if licenseLast??>
+${licenseLast}
+</#if>
