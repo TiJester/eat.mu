@@ -23,6 +23,10 @@
     exit('Connect Error (' . mysqli_connect_errno() . ') '
     . mysqli_connect_error());
     }
+    else 
+    {
+        echo "Подключение прошло!";    
+    }
     
     // установить набор символов клиента по умолчанию
     mysqli_set_charset($con, 'utf-8');
@@ -41,9 +45,19 @@
 ?>
     
     <table border="black"> 
-        <tr> <th>Имя</th> <th>Адрес</th> </tr>
+        <tr> <th>Адрес</th></tr>
 <?php
-    $result = mysqli_query($con, "SELECT address_country, address_city, address_street, address_street_num, address_apartment FROM address WHERE  ")
+    $result = mysqli_query($con, "SELECT address_country, address_city, address_street, address_street_num, address_apartment FROM address WHERE id_user =".$userID);
+    while ($row = mysqli_fetch_array($result)) 
+    {
+        echo "<td>".htmlentities($row["address_country"]).", ";
+        echo htmlentities($row["address_city"]).", ";
+        echo htmlentities($row["address_street"]).", ";
+        echo htmlentities($row["address_street_num"]).", ";
+        echo htmlentities($row["address_apartment"])."</td>";
+    }
+    mysqli_free_result($result);
+    mysqli_close($con);
 ?>
     </table>
     </body>
