@@ -1,14 +1,24 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TiJester
+ * UA Odessa  * 
  */
 
 /**
- * Description of class_bd
+ * Description of class_db
  *
- * @author admin
+ * @author Grib
  */
 
+//Расширяем класс MySQLi
+class class_db extends mysqli{
+    // единый экземпляр self, общий для всех экземпляров
+    private static $instance = null;
+    
+    //конфигурация подключения к базе данных
+    private $user = "root";
+    private $pass = "";
+    private $dbName = "eat_test_01012017";
+    private $dbHost = "localhost";
+}
