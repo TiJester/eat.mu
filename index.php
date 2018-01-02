@@ -1,3 +1,6 @@
+<?php 
+//require_once ("includes/class_db.php");
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -19,7 +22,7 @@ and open the template in the editor.
     <form name="main" action="main.php" method="GET">
         <input type="text" name="user" value="user" />
         <input type="submit" value="Показать" />
-        <br>Ваш адрес добавлен? <a href="createNewAddress.php">Добавить адрес</a>
+        <br>Вы зарегшестрированы?<a href="createNewUser.php">Регистраци</a>
     </form>         
         </header>
 <!--шапка-->
