@@ -22,8 +22,8 @@ and open the template in the editor.
     <form name="main" action="main.php" method="GET">
         <input type="text" name="user" value="user" />
         <input type="submit" value="Показать" />
-        <br>Вы зарегшестрированы?<a href="createNewUser.php">Регистраци</a>
-    </form>         
+        <br>Вы зарегшестрированы?<a href="createNewUser.php"> <br>Регистрация</a>
+    </form> 
         </header>
 <!--шапка-->
 <!--тело-->
