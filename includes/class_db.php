@@ -2,7 +2,7 @@
 
 /*
  * TiJester
- * UA Odessa  * 
+ * UA Odessa
  */
 
 /**
@@ -81,4 +81,14 @@ class class_db extends mysqli{
         $password = $this->real_escape_string($password);
         $this->query("INSERT INTO user (name, password) VALUES ('" . $name . "','". $password . "')");
     }
+    
+    // Функция verify_user_credentials. Функция требует логин и пароль, возвращая 0 или 1
+    public function verify_user_credentials ($name, $password)
+    {
+    $name = $this->real_escape_string($name);
+    $password = $this->real_escape_string($password);
+    $result = $this->query("SELECT 1 FROM user WHERE name = '". $name ."' AND password ='". $password . "'");
+    return $result->data_seek(0);     
+    }
+
 }
