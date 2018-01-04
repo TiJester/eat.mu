@@ -34,7 +34,7 @@ and open the template in the editor.
 <center>Привет Шапка</center>
     <br/>
     <hr>
-    <form name="main" action="main.php" method="GET">
+    <form name="main" action="userList.php" method="GET">
         <input type="text" name="user" value="user" />
         <input type="submit" value="Показать" />
         <br>Вы зарегшестрированы?<a href="createNewUser.php"> <br>Регистрация</a>
