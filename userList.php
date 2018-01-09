@@ -22,7 +22,7 @@ require_once ("includes/class_db.php");
         exit("<br/>Пользователь не найден: <b>" .$_GET["user"]."</b> Проверте орфографию и поробуйте еще раз.<br/>");
     }
 ?>
-    
+ 
     <table border="black"> 
         <tr> <th>Адрес</th></tr>
 <?php
