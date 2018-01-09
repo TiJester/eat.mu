@@ -17,8 +17,8 @@ class class_db extends mysqli{
     private static $instance = null;
     
     //конфигурация подключения к базе данных
-    private $user = "root";
-    private $pass = "";
+    private $user = "root";//пользователь к базе данных
+    private $pass = "";//пароль к базе данных
     private $dbName = "eat_test_01012017";
     private $dbHost = "localhost";
     
@@ -57,7 +57,8 @@ class class_db extends mysqli{
     public function get_user_id_by_name($name) 
     {
     $name = $this->real_escape_string($name);
-    $users = $this->query("SELECT id FORM user WHERE name = '".$name."'");
+    $users = $this->query("SELECT id FROM user WHERE name = '" .$name. "'");
+    /*SELECT id FROM wishers WHERE name = '*/
     if ($users->num_rows > 0)
         {
         $row = $users->fetch_row();
@@ -71,7 +72,7 @@ class class_db extends mysqli{
     // Функция get_user_by_users_id. Функция требует идентификатор. Идентификатор в качестве входного параметра и возвращает адрес, зарегистрированные для пользователя.
     public function get_user_by_users_id($userID)
     {
-        return $this->query("SELECT address_country, address_city, address_street, address_street_num, address_apartment FROM address WHERE id_user =".$userID);
+        return $this->query("SELECT id, address_country, address_city, address_street, address_street_num, address_apartment FROM address WHERE id_user =".$userID);
     }
     
     // Функция create_user. Функция создает новую запись в таблице user. Функция требует имя и пароль нового user (пользователя) в качестве входных параметров и не возвращает никаких данных.
