@@ -1,6 +1,6 @@
 <?php 
 require_once ("includes/class_db.php");
-$logonSuccess = FALSE;// нет подключения
+$logonSuccess = FALSE;// нет подключения, проверка залогинен ли пользователь
 
 //проверяет учетные данные пользователя
 if ($_SERVER['REQUEST_METHOD'] == "POST")
