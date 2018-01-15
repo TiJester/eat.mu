@@ -91,5 +91,18 @@ class class_db extends mysqli{
     $result = $this->query("SELECT 1 FROM user WHERE name = '". $name ."' AND password ='". $password . "'");
     return $result->data_seek(0);     
     }
-
+    
+    //
+    public function insert_user($userID, $address_country, $address_city, $address_street, $address_street_num, $address_apartment) 
+    {
+        $address_country = $this->real_escape_string($address_country);
+        $address_city = $this->real_escape_string($address_city);
+        $address_street = $this->real_escape_string($address_street);
+        $address_street_num = $this->real_escape_string($address_street_num);
+        $address_apartment = $this->real_escape_string($address_apartment);
+        $this->query("INSERT INTO address (id_user, address_country, address_city, address_street, address_street_num, address_apartment)"." VALUES"
+                . " (". $userID .",'" . $address_country . "','". $address_city ."','". $address_street ."','". $address_street_num . "','" . $address_apartment ."')");
+    
+//INSERT INTO `address` (`id`, `id_user`, `address_country`, `address_city`, `address_street`, `address_street_num`, `address_apartment`) VALUES (NULL, '2', 'Украина', 'Одесса', 'Аграрная', '6', '')
+    }
 }

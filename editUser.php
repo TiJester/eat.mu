@@ -1,9 +1,26 @@
-<?php
+<?php   
     session_start();
     if (!array_key_exists("user", $_SESSION))
     {
         header('Location: index.php');
         exit;
+    }
+    
+    require_once ("includes/class_db.php");
+    $userID = class_db::getInstance()->get_user_id_by_name($_SERVER['user']);
+    
+    $userDescriptionIsEmpty = FALSE;
+    if ($_SERVER['REQURST_METHOD'] == "POST")
+    {
+        if (array_key_exists("back", $_POST))
+        {
+            header('Location: editUserList.php');
+            exit;
+        }
+//        else 
+//        {
+//            if ($_POST)
+//        }
     }
 {
     
@@ -21,11 +38,11 @@ UA Odessa
     </head>
     <body>
         <form name="editUser" action="editUser.php" method="POST">
-            Страна<input type="text" name="address_country" value="" />
-            Населенный пункт<input type="text" name="address_city" value="" />
-            Улца<input type="text" name="address_street" value="" />
-            Номер дома<input type="text" name="address_street_num" value="" />
-            Номер квартиры<input type="text" name="address_apartment" value="" />
+            Страна<input type="text" name="address_country" value="" /><br>
+            Населенный пункт<input type="text" name="address_city" value="" /><br>
+            Улца<input type="text" name="address_street" value="" /><br>
+            Номер дома<input type="text" name="address_street_num" value="" /><br>
+            Номер квартиры<input type="text" name="address_apartment" value="" /><br>
             <input type="submit" value="Сохранить" name="saveUser" />
             <input type="submit" value="Назад" name="back" />
         </form>
