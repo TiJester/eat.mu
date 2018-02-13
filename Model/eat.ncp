@@ -1,0 +1,27 @@
+<Project>
+  <Name>eat</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>untitled</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>base_filed</Name>
+        <Access>Public</Access>
+        <Location left="432" top="142" />
+        <Size width="162" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected int name</Member>
+        <Member type="Field">protected int type</Member>
+        <Member type="Field">protected int caption</Member>
+        <Member type="Field">protected int value</Member>
+        <Member type="Field">protected int is_required</Member>
+        <Member type="Field">protected int parameters</Member>
+        <Member type="Field">protected int help</Member>
+        <Member type="Field">public int css_class</Member>
+        <Member type="Field">public int css_style</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+</Project>
