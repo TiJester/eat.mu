@@ -11,6 +11,9 @@
  * Ошибки обращения к СУБД MySQL
  */
 
+//  Выставляем уровень обработки ошибок
+error_reporting(E_ALL & ~E_NOTICE);
+
 class ExeptionMySql extends Exeption{
     //  Сообщение об ошибке
     protected $mysqli_error;

@@ -11,6 +11,9 @@
  * Обраение к несуществующему члену (Исключение)
  */
 
+//  Выставляем уровень обработки ошибок
+error_reporting(E_ALL & ~E_NOTICE);
+
 class ExeptionMember extends Exception{
     //  Имя не существующего члена
     protected $key;

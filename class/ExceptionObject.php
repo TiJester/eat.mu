@@ -11,6 +11,9 @@
  * Обращение к объекту, отличному от base_field - производного
  */
 
+//  Выставляем уровень обработки ошибок
+error_reporting(E_ALL & ~E_NOTICE);
+
 class ExceptionObject extends Exeption{
     //  Имя объекта
     protected $key;
