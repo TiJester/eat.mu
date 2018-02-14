@@ -5,11 +5,11 @@
     <Language>CSharp</Language>
     <Entities>
       <Entity type="Class">
-        <Name>base_filed</Name>
-        <Access>Public</Access>
-        <Location left="432" top="142" />
-        <Size width="162" height="230" />
-        <Collapsed>False</Collapsed>
+        <Name>base_field</Name>
+        <Access>Default</Access>
+        <Location left="346" top="170" />
+        <Size width="162" height="332" />
+        <Collapsed>True</Collapsed>
         <Member type="Field">protected int name</Member>
         <Member type="Field">protected int type</Member>
         <Member type="Field">protected int caption</Member>
@@ -19,9 +19,98 @@
         <Member type="Field">protected int help</Member>
         <Member type="Field">public int css_class</Member>
         <Member type="Field">public int css_style</Member>
+        <Member type="Constructor">public base_field()</Member>
+        <Member type="Method">public abstract void check()</Member>
+        <Member type="Method">public abstract void get_html()</Member>
+        <Member type="Method">public void __get()</Member>
+        <Member type="Method">protected void encodestring()</Member>
         <Modifier>Abstract</Modifier>
       </Entity>
+      <Entity type="Class">
+        <Name>base_field_text</Name>
+        <Access>Public</Access>
+        <Location left="137" top="271" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public int size</Member>
+        <Member type="Field">public int maxlength</Member>
+        <Member type="Constructor">public base_field_text()</Member>
+        <Member type="Method">public void check()</Member>
+        <Member type="Method">public void get_html()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Exeption</Name>
+        <Access>Public</Access>
+        <Location left="703" top="170" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ExeptionMember</Name>
+        <Access>Public</Access>
+        <Location left="536" top="338" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">protected void key()</Member>
+        <Member type="Method">public void __construct()</Member>
+        <Member type="Method">public void getKey()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ExeptionObject</Name>
+        <Access>Public</Access>
+        <Location left="703" top="338" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">int newField</Member>
+        <Member type="Method">protected void key()</Member>
+        <Member type="Constructor">public ExeptionObject()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ExeptionMySql</Name>
+        <Access>Public</Access>
+        <Location left="871" top="338" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
     </Entities>
-    <Relationships />
+    <Relationships>
+      <Relationship type="Association" first="0" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
   </ProjectItem>
 </Project>
