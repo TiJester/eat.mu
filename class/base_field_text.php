@@ -100,4 +100,21 @@ class base_field_text extends base_field{
     }    
     
     //Метод проверяющий корректность переданных данных
+    function check() {
+        // Обезопасить текст перед внесением в базу данных
+        if (!get_magic_quotes_gpc());
+        {
+            $this->value = mysqli_escape_string($this->value);
+        }
+        // Если поле обязательно для заполнения
+        if ($this->is_required)
+        {
+            // Проверяем не пустое ли оно
+            if(empty($this->value))
+            {
+                return "Поле \"".$this->caption."\"не заполнено";
+            }
+        }
+        return "";
+    }
 }
