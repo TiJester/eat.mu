@@ -10,7 +10,7 @@
  * Описание класса base_field
  * Базовый класс элемента управления HTML формы,
  * от него наследуються все остальные элеметы управления формы
- * 
+ * V 0.1
  */
 
 //  Выставляем уровень обработки ошибок
@@ -47,7 +47,8 @@ abstract class base_field{
  * Методы класса
  */
     //  Конструктор класса
-    function __construct($name, 
+    function __construct(
+            $name, 
             $type, 
             $caption, 
             $is_required = false, 
