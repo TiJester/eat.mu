@@ -7,14 +7,14 @@
 
 /**
  * 2018(С) Шевченко Г.Ю.
- * Описание класа ExeptionMySql
+ * Описание класа ExceptionMySql
  * Ошибки обращения к СУБД MySQL
  */
 
 //  Выставляем уровень обработки ошибок
 error_reporting(E_ALL & ~E_NOTICE);
 
-class ExeptionMySql extends Exeption{
+class ExceptionMySql extends Exception{
     //  Сообщение об ошибке
     protected $mysqli_error;
     
