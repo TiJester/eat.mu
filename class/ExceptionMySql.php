@@ -16,14 +16,14 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 class ExceptionMySql extends Exception{
     //  Сообщение об ошибке
-    protected $mysqli_error;
+    protected $mysql_error;
     
     //  SQL запрос
     protected $sql_query;
     
-    public function __consruct($mysqli_error, $sql_query, $massage)
+    public function __consruct($mysql_error, $sql_query, $massage)
     {
-        $this->mysqli_error = $mysqli_error;
+        $this->mysql_error = $mysql_error;
         $this->sql_query = $sql_query;
         
         //вызываем консруктор базового класса
@@ -32,7 +32,7 @@ class ExceptionMySql extends Exception{
         
     public function getMySQLError()
     {
-        return $this->mysqli_error;
+        return $this->mysql_error;
     }
     
     public function getSQLQuery()

@@ -32,7 +32,7 @@ class base_field_text extends base_field{
             $maxlength = 255,
             $size = 41,
             $parameters = "", 
-            $help, 
+//            $help, 
             $help_url = "") 
         {
         //  Вызываем конструктор базового класса base_field 
@@ -103,10 +103,10 @@ class base_field_text extends base_field{
     //Метод проверяющий корректность переданных данных
     function check() {
         // Обезопасить текст перед внесением в базу данных
-        if (!get_magic_quotes_gpc());
-        {
-            $this->value = mysqli_escape_string($this->value);
-        }
+#        if (!get_magic_quotes_gpc());
+#        {
+#            $this->value = mysqli_escape_string($this->value);
+#        }
         // Если поле обязательно для заполнения
         if ($this->is_required)
         {

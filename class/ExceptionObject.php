@@ -14,7 +14,7 @@
 //  Выставляем уровень обработки ошибок
 error_reporting(E_ALL & ~E_NOTICE);
 
-class ExceptionObject extends Exeption{
+class ExceptionObject extends Exception{
     //  Имя объекта
     protected $key;
     
@@ -23,7 +23,7 @@ class ExceptionObject extends Exeption{
         $this->key = $key;
         
         //Вызываем конструктор базового класса
-        parent::__construct($key, $massage);
+        parent::__construct($massage);
     }
     
     public function getKey()

@@ -42,12 +42,12 @@ class form {
         $this->css_fld_class = $css_fld_class;
         $this->css_fld_style = $css_fld_style;
         
-        //  Проверка, элемент массива $flds являеться ли производным класса field
+        //  Проверка, элемент массива $flds являеться ли производным класса base_field
         foreach($flds as $key => $obj)
         {
-            if(!is_subclass_of($obj, "field"))
+            if(!is_subclass_of($obj, "base_fild"))
             {
-                throw new ExceptionObject($key, "\"$key\" не являеться элементом управления");               
+                throw new ExceptionObject($key, "\" $key\"</b> не являеться элементом управления");               
             }
         }
     }
@@ -98,8 +98,8 @@ class form {
             foreach ($this->fields as $obj)
             {
                 //  Получаем название поля, и его HTML-представление
-                list($caption, $tag, $help, $aleternative) = $job->get_html();
-                if(is_array($tag)) $tag = implode ("<br>", $tag);
+                list($caption, $tag, $help, $aleternative) = $obj->get_html();
+                if(is_array($tag)) $tag = implode("<br>", $tag);
                 switch($job->type)
                 {
                     case "hidden":

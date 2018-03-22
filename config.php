@@ -14,6 +14,9 @@
     //  Выставляем уровень обработки ошибок
     error_reporting(E_ALL & ~E_NOTICE);
     
+#    require_once './class/ExceptionMember.php';
+ #   require_once './class/ExceptionMySql.php';
+  #  require_once './class/ExceptionObject.php';
     //  адрес сервера
     $host = "localhost";
     
@@ -36,24 +39,24 @@
     $dbcon = @mysqli_connect($host, $user, $password, $database /*, $port, $socket*/);
     if (!$dbcon)
     {
-        throw new ExceptionMySql(mysqli_error(),
-                "connection",
-                "Невозможно установить соединение с MySQL-сервером");
+#        throw new ExceptionMySql(mysql_error(),
+#                "connection",
+#                "Невозможно установить соединение с MySQL-сервером");
     //exit ("<p>В настоящее время сервер базы данных не доступен, поэтому корректное отображение страницы не возможно</p>");
     }
     
     //  Выбираем базу данных 
-    if(!@mysqli_select_db($database, $dbcon))
-    {
-        throw new ExeptionMySql(mysqli_error(),
-                "connection",
-                "Ошибка выбора базы данных");
+#    if(!@mysqli_select_db($database, $dbcon))
+#    {
+#        throw new ExceptionMySql(mysql_error(),
+#                "connection",
+#                "Ошибка выбора базы данных");
     //exit("<p>В настоящий момент база данных не доступна, поэтому корректное отображение страницы не возможно</p>");
-    }    
+#    }    
     
     //  Устанавливаем кодировку
     //  в которой будут отправляться данные MySQL серверу
-    @mysqli_query("SET NAMES", 'utf-8');
+ #   @mysqli_query("SET NAMES", 'utf-8');
 
   /*  if(!function_exists('get_magic_quotes_gpc'))
     {
