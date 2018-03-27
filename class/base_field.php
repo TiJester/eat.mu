@@ -51,15 +51,16 @@ abstract class base_field{
             $name, 
             $type, 
             $caption, 
-            $is_required = false, 
-            $value, 
-            $parameters ="", 
-            $help, 
+            $is_required = FALSE, 
+            $value = "", 
+            $parameters = "", 
+            $help = "", 
             $help_url = "")
     {
         $this->name = $this->encodestring($name);
         $this->type = $type;
         $this->caption = $caption;
+        $this->value = $value;
         $this->is_required = $is_required;
         $this->parameters = $parameters;
         $this->help = $help;
