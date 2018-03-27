@@ -45,7 +45,7 @@ class form {
         //  Проверка, элемент массива $flds являеться ли производным класса base_field
         foreach($flds as $key => $obj)
         {
-            if(!is_subclass_of($obj, "base_fild"))
+            if(!is_subclass_of($obj, "base_field"))
             {
                 throw new ExceptionObject($key, "\" $key\"</b> не являеться элементом управления");               
             }
@@ -100,7 +100,7 @@ class form {
                 //  Получаем название поля, и его HTML-представление
                 list($caption, $tag, $help, $aleternative) = $obj->get_html();
                 if(is_array($tag)) $tag = implode("<br>", $tag);
-                switch($job->type)
+                switch($obj->type)
                 {
                     case "hidden":
                         //  Скрытое поле
@@ -108,11 +108,11 @@ class form {
                         break;
                     case "paragraph":
                     case "title":
-                        echo "<tr> <td $style $class colspan=2 valing=top>$tag</td> <tr>\n";
+                        echo "<tr> <td $style $class colspan=2 valign=top>$tag</td> <tr>\n";
                         break;
                     case "city":
                         echo "tr <td width=100 $style $class valign=top>$caption:</td> <td $style $class>$tag</td> </tr>\n";
-                        echo "<tr> <td width=100 $style $class valing=top> Если города<br> нет в списке: </td> <td $style $class>$aleternative $help</td> </tr> \n";
+                        echo "<tr> <td width=100 $style $class valign=top> Если города<br> нет в списке: </td> <td $style $class>$aleternative $help</td> </tr> \n";
                         break;
                     default:
                         //  Элементы упраления по умолчанию
@@ -150,6 +150,6 @@ class form {
                 if(!empty($string)) $form_array[] = $string;
             }
         }
-        return;
+        return $form_array;
     }
 }
