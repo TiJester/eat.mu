@@ -22,12 +22,14 @@ require_once("class/ExceptionObject.php");
 
 require_once("class/ExceptionMember.php");
 
+require_once("class/ExceptionMySql.php");
+
 
 // Формирование HTML-формы
 try{
     $name = new base_field_text("name",
-            "Имя",
-            TRUE,
+            "Имя пользователя",
+            TRUE, //    Обязательное поле
             $_POST['name']);
     $pass = new base_field_text("pass",
             "Пароль",
@@ -42,21 +44,22 @@ try{
     if(!empty($_POST))
     {
         // Устанавиваем соединение с базой данных
-        require_once("config.php");
+        require_once("/config/config.php");
         //  Проверяем корректность заполнения HTML-формы и обрабатываем текстовые поля
         $error = $form->check();
         if(empty($error))
         {
             //  Записываем полученные результаты в таблицу
-            $query = "INSERT INTO users VALUES(NULL,"
-                    . "'{$form->fields[name]->value}',"
-                    . "MD5('{$form->fields[pass]->value}')"
-                    . "NOW()";
-            if(!mysql_query($query))
+            $query = "INSERT INTO users VALUES (NULL, '{$form->fields[name]->value}', MD5('{$form->fields[pass]->value}'), NOW())";
+            
+            if(mysqli_query($dbcon, $query))
             {
-                throw new ExceptionMySql(mysql_error(),
-                        $query,
-                        "Ошибка регистрации пользователя");
+               // throw new ExceptionMySql(mysqli_error(), "connection", "Ошибка регистрации пользователя");
+                      //  $query,
+                        exit( "Ошибка регистрации пользователя");
+            }
+            else {
+                exit("Регестрация успешна!");
             }
         
         //  Перегружаем страницу для сброса POST-данных
@@ -89,7 +92,7 @@ catch (ExceptionObject $exc) {
     echo "<p class=help> Произошла исключительная ситуация <b>ExceptionObject</b> - попытка использовать"
     . " в качестве элемента управления объекта, класс которого не являеться производным от базового класса <b>"
     . "{$exc->getMessage()}.</p>";
-    echo "<p class=help> Ошибка в файле  {$exc->getFile()} в строке {$exc->getLine()}.";
+    echo "<p class=help> Ошибка в файле:  {$exc->getFile()}, в строке {$exc->getLine()}.";
     
 //  Включаем завершение страницы
 //   require_once("includes/bottom.php");
@@ -111,7 +114,7 @@ catch (ExceptionMySql $exc) {
 //  Включаем заголовок страницы
 //    require_once("includes/top.php");
     echo "<p class=help> Произошла исключительная систуация <b> ExceptionMySql</b> при обращении к MySql</p>";
-    echo "<p class=help> {$exc->getMySQLError()}<br>". n12br($exc->getSQLQuery())."</p>";  
+    echo "<p class=help> {$exc->getMySQLError()}<br>". /*n12br*/($exc->getSQLQuery())."</p>";  
     echo "<p class=help> Ошибка в файле{$exc->getFile()} в строке {$exc->getLine()}.</p>";
 //  Включаем завершение страницы
 //  require_once("includes/bottom.php");
