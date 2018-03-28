@@ -15,6 +15,8 @@
 require_once("class/base_field.php");
 //  Подключаем класс текстового поля
 require_once("class/base_field_text.php");
+//  Подключаем класс текстового поля
+require_once("class/base_field_password.php");
 //  Подключаем класс формы
 require_once("class/form.php");
 //  Исключения
@@ -31,7 +33,7 @@ try{
             "Имя пользователя",
             TRUE, //    Обязательное поле
             $_POST['name']);
-    $pass = new base_field_text("pass",
+    $pass = new base_field_password("pass",
             "Пароль",
             TRUE,
             $_POST['pass']);
@@ -52,11 +54,9 @@ try{
             //  Записываем полученные результаты в таблицу
             $query = "INSERT INTO users VALUES (NULL, '{$form->fields[name]->value}', MD5('{$form->fields[pass]->value}'), NOW())";
             
-            if(mysqli_query($dbcon, $query))
+            if(!mysqli_query($dbcon, $query))
             {
-               // throw new ExceptionMySql(mysqli_error(), "connection", "Ошибка регистрации пользователя");
-                      //  $query,
-                        exit( "Ошибка регистрации пользователя");
+                throw new ExceptionMySql(mysqli_error($dbcon));
             }
             else {
                 exit("Регестрация успешна!");
