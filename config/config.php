@@ -37,10 +37,10 @@
     #   $socket = "";
     
     //  Устанавливаем соединение с базой данных
-    $dbcon = mysqli_connect($host, $user, $password, $database) /*or die("Ошибка ".mysqli_error($dbcon))*/;
+    $dbcon = mysqli_connect($host, $user, $password, $database);
     if (!$dbcon)
     {
-         throw new ExceptionMySql(mysqli_error(), "connection", "Ошибка выбора базы данных");
+         throw new ExceptionMySql(mysqli_error($dbcon));
     }
 
      /*   
