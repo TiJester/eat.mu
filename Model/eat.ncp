@@ -29,7 +29,7 @@
       <Entity type="Class">
         <Name>base_field_text</Name>
         <Access>Public</Access>
-        <Location left="142" top="265" />
+        <Location left="346" top="599" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public int size</Member>
@@ -99,27 +99,115 @@
         <Member type="Method">public void __toString()</Member>
         <Modifier>None</Modifier>
       </Entity>
+      <Entity type="Class">
+        <Name>base_field_password</Name>
+        <Access>Public</Access>
+        <Location left="432" top="875" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>base_field_text_english</Name>
+        <Access>Public</Access>
+        <Location left="217" top="875" />
+        <Size width="182" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>base_field_text_int</Name>
+        <Access>Public</Access>
+        <Location left="602" top="875" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>base_field_text_email</Name>
+        <Access>Public</Access>
+        <Location left="770" top="875" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>base_fieled_textarea</Name>
+        <Access>Public</Access>
+        <Location left="515" top="599" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="0" second="1">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="2" second="3">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="2" second="4">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="2" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="11">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
