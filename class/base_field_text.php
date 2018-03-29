@@ -105,11 +105,12 @@ class base_field_text extends base_field{
     //Метод проверяющий корректность переданных данных
     public function check() {
         // Обезопасить текст перед внесением в базу данных
- /*       if (!get_magic_quotes_gpc());
+        if (!get_magic_quotes_gpc());
         {
-            $this->value = mysqli_real_escape_string($this->value);
+        //    $this->value = $dbcon->real_escape_string($this->value);
         }
- */       // Если поле обязательно для заполнения
+
+        // Если поле обязательно для заполнения
         if ($this->is_required)
         {
             // Проверяем не пустое ли оно
