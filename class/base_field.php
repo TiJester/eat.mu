@@ -84,7 +84,7 @@ abstract class base_field{
         }
         else 
         {
-            throw new ExceptionMember ($key, "Член".__CLASS__."::$key не существует");
+            throw new ExceptionMember ($key, "Член ".__CLASS__."::$key не существует");
         }    
     }
     
