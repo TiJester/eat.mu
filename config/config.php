@@ -42,15 +42,6 @@
     {
          throw new ExceptionMySql(mysqli_error($dbcon));
     }
-
-     /*   
-    $query = "SELECT * FROM users";
-    $res = mysqli_query($dbcon, $query) or die ("Ошибка ".mysqli_error($dbcon));
-    if($res)
-    {
-        exit("Good!!!<br>");
-    }
- */ 
     
     //  Устанавливаем кодировку в которой будут отправляться данные MySQL серверу
     if(!mysqli_set_charset($dbcon, "utf8"))
