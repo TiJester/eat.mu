@@ -13,11 +13,7 @@
 
     //  Выставляем уровень обработки ошибок
     error_reporting(E_ALL & ~E_NOTICE);
- /*   
-   require_once './class/ExceptionMember.php';
-   require_once './class/ExceptionMySql.php';
-   require_once './class/ExceptionObject.php';
-  */ 
+
     //  адрес сервера
     $host = "localhost"; //127.0.0.1
     
