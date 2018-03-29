@@ -7,25 +7,12 @@
 
 /**
  * 2018(С) Шевченко Г.Ю.
- * Описание регистрации
- * V 0.1
+ * Форма регистрации пользователей
+ * V 0.2
  */
 
-//  Подключаем базовый класс
-require_once("class/base_field.php");
-//  Подключаем класс текстового поля
-require_once("class/base_field_text.php");
-//  Подключаем класс текстового поля
-require_once("class/base_field_password.php");
-//  Подключаем класс формы
-require_once("class/form.php");
-//  Исключения
-require_once("class/ExceptionObject.php");
-
-require_once("class/ExceptionMember.php");
-
-require_once("class/ExceptionMySql.php");
-
+//  Подключаем все необходимые классы
+require_once("config/class_config.php");
 
 // Формирование HTML-формы
 try{
@@ -37,26 +24,64 @@ try{
             "Пароль",
             TRUE,
             $_POST['pass']);
-    $form = new form(array("name"=>$name,
-            "pass"=>$pass),
-            "Добавить",
-            "fields");
+    $pass2 = new base_field_password("pass2",
+            "Повтор пароля",
+            TRUE,
+            $_POST['pass2']);
+    $email = new base_field_text_email("email",
+            "E-mail",
+            TRUE,
+            $_POST['email']);
+    $about = new base_field_textarea("about",
+            "О себе",
+            FALSE,
+            $_POST['about']);
+    
+    $form = new form(array(
+        "name"=>$name,
+        "pass"=>$pass,
+        "pass2"=>$pass2,
+        "email"=>$email,
+        "about"=>$about),
+        "Добавить",
+        "fields");
     
 //  Обработчик HTML-формы
     if(!empty($_POST))
     {
         // Устанавиваем соединение с базой данных
-        require_once("/config/config.php");
+        require_once("config/config.php");
         //  Проверяем корректность заполнения HTML-формы и обрабатываем текстовые поля
         $error = $form->check();
+        
+        //  Проверяем идентичность паролей
+        if($form->fields['pass']->value != $form->fields['pass2']->value){
+            $error[] = "Неверный пароль";
+        }
+        
+        //  Проверяем, не регестрировался ли ранее пользователь с идентичным адресом
+        $query = "SELECT * FROM users WHERE email = '{$form->fields[email]->value}'";
+        $mail = mysqli_query($dbcon, $query); //    mysqli_query - выполнить запрос к базе данных
+        if(!$mail)
+        {
+            throw new ExceptionMySql(mysqli_error($dbcon));
+            //print (mysqli_error($dbcon));
+        }
+        //print ("$query")."<br>";
+        
+        if(mysqli_query($mail, 0)){ // не верная проверка!
+            $error[] = "Пользователь с электронным адресом: <br><b><i>{$form->fields[email]->value}</i></b><br> уже существует";
+        }
+            
         if(empty($error))
         {
             //  Записываем полученные результаты в таблицу
-            $query = "INSERT INTO users VALUES (NULL, '{$form->fields[name]->value}', MD5('{$form->fields[pass]->value}'), NOW())";
+            $query = "INSERT INTO users VALUES (NULL, '{$form->fields[name]->value}', MD5('{$form->fields[pass]->value}'),'{$form->fields[email]->value}','{$form->fields[description]->value}', NOW())";
             
             if(!mysqli_query($dbcon, $query))
             {
                 throw new ExceptionMySql(mysqli_error($dbcon));
+                //print (mysqli_error($dbcon));
             }
             else {
                 exit("Регестрация успешна!");
