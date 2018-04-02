@@ -8,7 +8,7 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Конфигурация CMS
- * V 0.2
+ * V 0.2.1
  */
 
     //  Выставляем уровень обработки ошибок
@@ -33,14 +33,14 @@
     #   $socket = "";
     
     //  Устанавливаем соединение с базой данных
-    $dbcon = mysqli_connect($host, $user, $password, $database);
-    if (!$dbcon)
+    $link = mysqli_connect($host, $user, $password, $database);
+    if (!$link)
     {
-         throw new ExceptionMySql(mysqli_error($dbcon));
+         throw new ExceptionMySql(mysqli_error($link));
     }
     
     //  Устанавливаем кодировку в которой будут отправляться данные MySQL серверу
-    if(!mysqli_set_charset($dbcon, "utf8"))
+    if(!mysqli_set_charset($link, "utf8"))
     {
         if(!function_exists('get_magic_quotes_gpc'))
         {
