@@ -25,6 +25,6 @@
     
     require_once ("class/form.php"); // Класс формирование формы
     
-    require_once ("class/ExceptionMember.php"); //  Исключения к несцществующему элементу
+    require_once ("class/ExceptionMember.php"); //  Исключения к несуществующему элементу
     require_once ("class/ExceptionMySql.php"); //  Исключения Запросов
     require_once ("class/ExceptionObject.php"); //  Исключения объектов
