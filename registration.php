@@ -8,7 +8,8 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Форма регистрации пользователей
- * V 0.2
+ * Добавлена проверка на уникальность почты
+ * V 0.2.1
  */
 
 //  Подключаем все необходимые классы
@@ -56,20 +57,18 @@ try{
         
         //  Проверяем идентичность паролей
         if($form->fields['pass']->value != $form->fields['pass2']->value){
-            $error[] = "Неверный пароль";
+            $error[] = "Пароли не совпадают";
         }
         
-        //  Проверяем, не регестрировался ли ранее пользователь с идентичным адресом
+        //  Проверяем, не регистрировался ли ранее пользователь с идентичным email-ом
         $query = "SELECT * FROM users WHERE email = '{$form->fields[email]->value}'";
-        $mail = mysqli_query($dbcon, $query); //    mysqli_query - выполнить запрос к базе данных
-        if(!$mail)
+        $result = mysqli_query($link, $query); //    mysqli_query - выполнить запрос к базе данных
+        if(!$link)
         {
-            throw new ExceptionMySql(mysqli_error($dbcon));
-            //print (mysqli_error($dbcon));
+            throw new ExceptionMySql(mysqli_error($link));
         }
-        //print ("$query")."<br>";
         
-        if(mysqli_query($mail, 0)){ // не верная проверка!
+        if(mysqli_fetch_assoc($result)){
             $error[] = "Пользователь с электронным адресом: <br><b><i>{$form->fields[email]->value}</i></b><br> уже существует";
         }
             
@@ -78,9 +77,9 @@ try{
             //  Записываем полученные результаты в таблицу
             $query = "INSERT INTO users VALUES (NULL, '{$form->fields[name]->value}', MD5('{$form->fields[pass]->value}'),'{$form->fields[email]->value}','{$form->fields[description]->value}', NOW())";
             
-            if(!mysqli_query($dbcon, $query))
+            if(!mysqli_query($link, $query))
             {
-                throw new ExceptionMySql(mysqli_error($dbcon));
+                throw new ExceptionMySql(mysqli_error($link));
                 //print (mysqli_error($dbcon));
             }
             else {
