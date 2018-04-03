@@ -8,8 +8,8 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Конфигурация классов CMS
- * V 0.1
- * 11 включений
+ * V 0.1.1
+ * 13 включений
  */
 
     //  Выставляем уровень обработки ошибок
@@ -21,7 +21,9 @@
     require_once ("class/base_field_text_english.php"); //  Класс проверки корреткности на латиницу
     require_once ("class/base_field_text_int.php"); //  Класс проверки на целочисленное значение
     require_once ("class/base_field_textarea.php"); //  Класс текстовой обости textarea
-    require_once ("class/base_field_password.php"); //   Класс текстового поля со скрытым значением
+    require_once ("class/base_field_password.php"); //  Класс текстового поля со скрытым значением
+    require_once ("class/base_field_hidden.php"); //    Класс скрытого поля
+    require_once ("class/base_field_hidden_int.php"); //    Класс скрытого поля с целочисленым значением
     
     require_once ("class/form.php"); // Класс формирование формы
     
