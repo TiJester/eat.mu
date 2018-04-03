@@ -32,4 +32,23 @@ class base_field_hidden extends base_field{
                 "", 
                 "");
     }
+    
+    //  Метод для возврата имени названия поля и самого тега элемента управления
+    function get_html() {
+        $tag ="<input type=\"".$this->type."\" name=\"".$this->name."\" value=\"".  htmlspecialchars($this->value, ENT_QUOTES)."\">\n";
+        return array("", $tag);
+    }
+    
+    //  Метод для проверки корректности переданных данных
+    function check() {
+        if(!get_magic_quotes_grp()){
+            $this->value =  mysqli_escape_string($link, $query);
+        }
+        if($this->is_required){
+            if(empty($this->value)){
+                return "Скрытое поле не заполнено";
+            }
+        }
+        return "";
+    }
 }
