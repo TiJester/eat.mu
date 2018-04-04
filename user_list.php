@@ -27,6 +27,11 @@
                 echo "<a href=edituser.php?id_user=$user[id_user]>".htmlspecialchars($user['name'], ENT_QUOTES)."</a>, <a href=edituser.php?id_user=$user[id_user]>".htmlspecialchars($user['email'], ENT_QUOTES)."</a></br>";
             }
         }
-    } catch (Exception $ex) {
-
-    }
+    } catch (ExceptionMySql $ex) {
+    //  Обработка исключения при обращении к MySQL
+    //  Включаем заголовок страницы
+    echo "<p class=help> Произошла исключительная систуация <b> ExceptionMySql</b> при обращении к MySql</p>";
+    echo "<p class=help> {$exc->getMySQLError()}<br>". /*n12br*/($exc->getSQLQuery())."</p>";  
+    echo "<p class=help> Ошибка в файле{$exc->getFile()} в строке {$exc->getLine()}.</p>";
+    exit();
+}
