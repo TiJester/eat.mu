@@ -8,11 +8,10 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Страница редактирования пользователя
- * V 0.1.1
+ * V 0.1.2
  */
 
 //
-echo 'test<br>';
     try {
         //  Подключам все необходимые классы
         require_once ("config/class_config.php");
@@ -81,15 +80,16 @@ echo 'test<br>';
             if($form->fields['pass']->value != $form->fields['pass2']->value){
                 $error[] = "Пароли не равны";
             }
-            //  Проверка на совпадения email с ранее зарегистрироваными пользователями
-            $query = "SELECT COUNT(*) FROM users WHERE email ='{$form->fields[email]->value}'";
-            $result = mysqli_query($link, $query);
-            if(!$result){
-                throw new ExceptionMySql(mysqli_error($link));
-            }
-            if(mysqli_fetch_assoc($result)){
-                $error[] = "Пользователь с электронным адресом: <br><b><i>{$form->fields[email]->value}</i></b><br> уже существует";
-            }
+        //  Проверяем, не регистрировался ли ранее пользователь с идентичным email-ом
+        $query = "SELECT * FROM users WHERE email = '{$form->fields[email]->value}'";
+        $result = mysqli_query($link, $query); //    mysqli_query - выполнить запрос к базе данных
+        if(!$link)
+        {
+            throw new ExceptionMySql(mysqli_error($link));
+        }
+        if(mysqli_fetch_assoc($result)){
+            $error[] = "Пользователь с электронным адресом: <b><i>{$form->fields[email]->value}</i></b> - уже существует";
+        }
             
             //  Подгружаем информацию о себе из базы данных
             $query = "SELECT COUNT(*) FROM users WHERE description ='{$form->fields[description]->value}'";
@@ -105,8 +105,8 @@ echo 'test<br>';
             }
             
             //  Перегружаем страницу для сброса POST данных
-            //header("Location:user_list.php");
-            //exit();
+            header("Location:user_list.php");
+            exit();
         }
         
         //  3.Видимая часть страницы
@@ -118,8 +118,17 @@ echo 'test<br>';
             }
         }
         //  Выводим HTML-форму
-        $form->print_form();
-          
+        //***************************
+        $query = "SELECT * FROM users WHERE id_user = '{$form->fields[id_user]->value}'";
+        $result = mysqli_query($link, $query);
+        //  Если имееться хоть бы одна запись выводим список пользователей
+        if(mysqli_num_rows($result)){ //    Получает число рядов в результирующей выборке
+            while($user = mysqli_fetch_array($result)){ //   Выбирает одну строку из результирующего набора и помещает ее в ассоциативный массив, обычный массив или в оба 
+                echo "Имя пользователя: <b>{$user['name']}</b>";
+            }
+        }        
+        //***************************
+        $form->print_form();          
     } catch (ExceptionMySql $exc) {
         echo "<p class=help> Произошла исключительная систуация <b> ExceptionMySql</b> при обращении к MySql</p>";
         echo "<p class=help> {$exc->getMySQLError()}<br>". /*n12br*/($exc->getSQLQuery())."</p>";  

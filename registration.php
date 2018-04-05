@@ -33,17 +33,17 @@ try{
             "E-mail",
             TRUE,
             $_POST['email']);
-    $about = new base_field_textarea("about",
+    $description = new base_field_textarea("description",
             "О себе",
             FALSE,
-            $_POST['about']);
+            $_POST['description']);
     
     $form = new form(array(
         "name"=>$name,
         "pass"=>$pass,
         "pass2"=>$pass2,
         "email"=>$email,
-        "about"=>$about),
+        "description"=>$description),
         "Добавить",
         "fields");
     
@@ -67,15 +67,25 @@ try{
         {
             throw new ExceptionMySql(mysqli_error($link));
         }
-        
         if(mysqli_fetch_assoc($result)){
-            $error[] = "Пользователь с электронным адресом: <br><b><i>{$form->fields[email]->value}</i></b><br> уже существует";
+            $error[] = "Пользователь с электронным адресом: <b><i>{$form->fields[email]->value}</i></b> - уже существует";
+        }
+        
+        //  Проверяем, не регистрировался ли ранее пользователь с идентичным ником
+        $query = "SELECT * FROM users WHERE name = '{$form->fields[name]->value}'";
+        $result = mysqli_query($link, $query); //    mysqli_query - выполнить запрос к базе данных
+        if(!$link)
+        {
+            throw new ExceptionMySql(mysqli_error($link));
+        }
+        if(mysqli_fetch_assoc($result)){
+            $error[] = "Пользователь с Ником: <b><i>{$form->fields[name]->value}</i></b> - уже существует";
         }
             
         if(empty($error))
         {
             //  Записываем полученные результаты в таблицу
-            $query = "INSERT INTO users VALUES (NULL, '{$form->fields[name]->value}', MD5('{$form->fields[pass]->value}'),'{$form->fields[email]->value}','{$form->fields[description]->value}', NOW())";
+            $query = "INSERT INTO users VALUES (NULL, '{$form->fields[name]->value}', MD5('{$form->fields[pass]->value}'), '{$form->fields[email]->value}', '{$form->fields[description]->value}', NOW())";
             
             if(!mysqli_query($link, $query))
             {
