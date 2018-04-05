@@ -42,7 +42,7 @@ class base_field_hidden extends base_field{
     //  Метод для проверки корректности переданных данных
     function check() {
         if(!get_magic_quotes_grp()){
-            $this->value =  mysqli_escape_string($link, $query);
+//            $this->value =  mysqli_escape_string($link, $query);
         }
         if($this->is_required){
             if(empty($this->value)){
