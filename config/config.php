@@ -8,11 +8,13 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Конфигурация CMS
- * V 0.2.1
+ * V 0.2.2
  */
 
     //  Выставляем уровень обработки ошибок
     error_reporting(E_ALL & ~E_NOTICE);
+    
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Проверки ошибки MySQL
 
     //  адрес сервера
     $host = "localhost"; //127.0.0.1
