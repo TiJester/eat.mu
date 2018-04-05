@@ -21,12 +21,12 @@ class base_field_hidden_int extends base_field_hidden {
         if($this->is_required){
             //  Поле обязательно к заполнению
             if(!preg_match("|^[\d]+$|", $this->value)){
-                return "Скрытое поле должно быть целым числом";
+                return "Скрытое поле должно быть целым числом!";
             }
         }
         //  Поле не обязательно к заполнению
         if(!preg_match("|^[\d]*$|", $this->value)){
-            return "Скрытое поле должно быть целым числом";
+            return "Скрытое поле должно быть целым числом!!!";
         }
         return "";
     }
