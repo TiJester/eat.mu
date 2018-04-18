@@ -9,13 +9,13 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа base_field_select
  * Выпадающий список
- * V 0.1
+ * V 0.1.1
  */
 
 //  Выставляем уровень обработки ошибок
 error_reporting(E_ALL & ~E_NOTICE);
 
-class base_field_select {
+class base_field_select extends base_field{
     //  Размер текстового поля
     protected $options;
     //  Являеться ли список - мультисписком
