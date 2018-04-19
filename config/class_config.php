@@ -8,8 +8,8 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Конфигурация классов CMS
- * V 0.1.3
- * 15 включений
+ * V 0.1.4
+ * 16 включений
  */
 
     //  Выставляем уровень обработки ошибок
@@ -26,6 +26,7 @@
     require_once ("class/base_field_hidden_int.php"); //    Класс скрытого поля с целочисленым значением
     require_once ("class/base_field_select.php"); //    Класс списка
     require_once ("class/base_field_radio.php"); //    Класс радио-кнопки
+    require_once ("class/base_filed_checkbox.php"); //    Класс флажек
     
     require_once ("class/form.php"); // Класс формирование формы
     
