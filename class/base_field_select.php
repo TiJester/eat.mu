@@ -9,7 +9,7 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа base_field_select
  * Выпадающий список
- * V 0.1.1
+ * V 0.1.2
  */
 
 //  Выставляем уровень обработки ошибок
@@ -26,7 +26,7 @@ class base_field_select extends base_field{
     function __construct(
             $name,
             $caption,
-            $option = array(),
+            $options = array(),
             $value,
             $multi = FALSE,
             $select_size = 4,
@@ -40,7 +40,7 @@ class base_field_select extends base_field{
                 $value,
                 $parametrs);
         //  Инициализируем члены класса
-        $this->options = $option;
+        $this->options = $options;
         $this->multi = $multi;
         $this->select_size = $select_size;
     }
@@ -61,8 +61,8 @@ class base_field_select extends base_field{
             $class = "";
         }
         
-        if($this->multi && $this->secect_size){
-            $multi = "multiple size=".$this->secect_size;
+        if($this->multi && $this->select_size){
+            $multi = "multiple size=".$this->select_size;
             $this->name = $this->name."[]";
         }
         else{
