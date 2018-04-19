@@ -9,7 +9,7 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа base_field_radio
  * Радио конопка
- * V 0.1.1
+ * V 0.1.2
  */
 
 //  Выставляем уровень обработки ошибок
@@ -72,11 +72,11 @@ class base_field_radio extends base_field{
                      $checked = "";
                  }
                  
-                 if(strpost($this->parameters, "horizontal") !== FALSE){
-                     $tag .= "<input $style $class type=".$this->type."name=".$this->name."[]$checked value='$key'>$value";
+                 if(strpos($this->parameters, "horizontal") !== FALSE){
+                     $tag .= "<input $style $class type=".$this->type." name=".$this->name."[]$checked value='$key'>$value";
                  }
                  else{
-                     $tag[] = "<input $style $class type=".$this->type."name=".$this->name."[]$checked value='$key'>$value";
+                     $tag[] = "<input $style $class type=".$this->type." name=".$this->name."[]$checked value='$key'>$value\n";
                  }
              }
          }
