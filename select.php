@@ -24,10 +24,23 @@ UA Odessa
                 array(0,2),
                 TRUE,
                 3);
+        $two = new base_field_select(
+                "two", 
+                "Выбор одного <br> значеня", 
+                array(
+                    "Первый",
+                    "Второй",
+                    "Третий"), 
+                TRUE, 
+                0);
+        
         $form = new form(array(
-            "one" => $one),
-                $button_name,
+            "one" => $one,
+            "two" => $two),
+                "Вперед",
                 $class_name);
+        
+        $form->print_form();
         ?>
     </body>
 </html>
