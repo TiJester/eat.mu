@@ -9,8 +9,12 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа base_field_paragraph
  * Параграф
- * V 0.1
+ * V 0.1.1
  */
+
+//  Выставляем уровень обработки ошибок
+error_reporting(E_ALL & ~E_NOTICE);
+
 class base_field_paragraph extends base_field{
     //  Констуктор класса
     function __construct(
