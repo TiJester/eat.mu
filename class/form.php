@@ -9,7 +9,7 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа form
  * HTML-формы
- * V 0.1
+ * V 0.1.1
  */
 class form {
     //  Массив элементов управления
@@ -107,7 +107,7 @@ class form {
                         echo $tag;
                         break;
                     case "paragraph":
-                    case "title":
+                    case "title": //    Заголовок
                         echo "<tr> <td $style $class colspan=2 valign=top>$tag</td> <tr>\n";
                         break;
                     case "city":
@@ -132,7 +132,7 @@ class form {
         echo "</form>";
     }
     
-    //  Перегрузка специального метода __toString()
+    //  Перегрузка специального метода __toString() -> Вывод на печать
     public function __toString() {
         $this->print_form();
     }
