@@ -115,7 +115,7 @@ class base_field_datetime extends base_field{
         }
         $tag .= "</select>";
         //  Выпадающий список года
-        $tag .="<select title='Год' $style $class type=text name='".$this->name."[year]'>";
+        $tag .= "<select title='Год' $style $class type=text name='".$this->name."[year]'>";
         for($i = 2000; $i <= 2018; $i++){
             if($date_year == $i){
                 $temp = "selected";
@@ -127,6 +127,54 @@ class base_field_datetime extends base_field{
         }
         $tag .= "</select>";
         //  Выпадающий список для часа
+        $tag .= "&nbsp;&nbsp;<select title='Часы' $style $class type=text name'".$this->name."[hour]'>";
+        for($i = 0; $i < 23; $i++){
+            if($date_hour == $i) {
+                $temp = "selected";
+            }
+            else {
+                $temp = "";
+            }
+            $tag .= "<option value=$i $temp>". sprintf("%02d",$i);
+        }
+        $tag .= "<select>";
+        //  Выпадающий список для минут
+        $tag .= "<select title='Минуты' $style $class type=text name'".$this->name."[mitute]'>";
+        for($i = 0; $i <=59; $i++){
+            if($date_minute == $i){
+                $temp = "selected";
+            }
+            else {
+                $temp = "";
+            }
+            $tag .= "<option value=$i $temp>". sprintf("%02d", $i);
+        }
+        $tag .= "<select>";
         
+        //  Если поле обязательно помечаем его
+        if($this->is_required){
+            $this->caption .= " *";
+        }
+        
+        //  Формируем подсказку если она имееться
+        $help = "";
+        if(!empty($this->help)){
+            $help .= "<span style='color:blue'>".n12br($this->help)."</span>";
+        }
+        if(!empty($help)){
+            $help .= "<br>";
+        }
+        if(!empty($this->help_url)){
+            $help .= "<span style ='color:blue'> <a href=".$this->help_url.">помощь</a></span>";
+        }
+        return array($this->caption, $tag, $help);        
+    }
+    
+    //  Медод проверяющий корректность переданных данных
+    function check() {
+        if(date('Y', $this->time) > $this->end_year || date('Y', $this->time)< $this->begin_year){
+            return "Поле \"".$this->caption."\" содержит недопустимое значение (его значение должно лежать в диапазоне".$this->begin_year."-".$this->end_year.")";
+        }
+        return "";
     }
 }
