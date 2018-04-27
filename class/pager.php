@@ -9,7 +9,7 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа pager
  * Абстрактный класс постраничной навигации
- * V 0.1
+ * V 0.1.1
  */
 
 //  Выставляем уровень обработки ошибок
@@ -62,9 +62,35 @@ abstract class pager {
                     $return_page .= "&nbsp;[".(($i - 1) * $this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
                 }
                 else{
-                    $return_page .= 
+                    $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()} class=main_txt_lnk [".(($i - 1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
+                }
+            }
+            $return_page .= "&nbsp;...&nbsp;<a href=$_SERVER[PHP_SELF]?page=$number{$this->get_parameters()} class=mail_txt_lnk[".(($number - 1)*$this->get_pnumber() + 1)."{$this->get_total()}]</a>$nbsp;";
+        }
+        else{
+            //  нет
+            for($i = $page; $i <= $number; $i++){
+                if($number == $i){
+                    if($page == $i){
+                        $return_page .= "&nbsp;[".(($i - 1)*$this->get_pnumber() + 1)."- {$this->get_total()}]&nbsp;";
+                    }
+                    else{
+                        $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()} class=min_txt_lnk>[".(($i - 1)*$this->get_pnumber() + 1)."- {$this->get_total()}]</a>&nbsp;";
+                    }
+                }
+                else{
+                    if($page == $i){
+                        $return_page .= "&nbsp;[".(($i - 1)* $this->get_pnumber() + 1). "-".$i*$this->get_pnumber()."]&nbsp;";
+                    }
+                    else{
+                        $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()} class=main_txt_nlk>[".(($i - 1)*$this->get_pnumber() + 1). "-" .($i*$this->get_pnumber())."]</a>&nbsp;";
+                    }
                 }
             }
         }
+        return $return_page;
     }
+    
+    //  Альтернативный вид постраничной навигации
+    
 }
