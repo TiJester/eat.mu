@@ -11,7 +11,61 @@
  * Файловая постраничная навигация
  * V 0.1.0
  */
+
+//  Выставляем уровень обработки ошибок
+error_reporting(E_ALL & ~E_NOTICE);
+
 class pager_file extends pager{
+    //  Имя файла
+    protected $filename;
+    //  Колличество позиций на странице
+    private $pnumber;
+    //  Колличество ссылок слева и справа от текущей страницы
+    private $page_link;
+    //  Параметры
+    private $parameters;
+    //  Конструктор
+    public function __construct(
+                    $filename,
+                    $pnumber = 10,
+                    $page_link = 3,
+                    $parameters = "") {
+                        $this->filename = $filename;
+                        $this->pnumber = $pnumber;
+                        $this->page_link = $page_link;
+                        $this->parameters = $parameters;
+    }
+    public function get_total() {
+        $countline = 0;
+        //  Открываем файл
+        $fd = fopen($this->filename, "r");
+        if($fd){
+            //  Подсчитываем коллиество записей в файле
+            while (!feof($fd)){
+                fgets($fd, 10000);
+                $countline++;
+            }
+            //  Закрываем файл
+            fclose($fd);
+        }
+        return $countline;
+    }
     
-    //поместите свой код здесь
+    public function get_pnumber() {
+        //  Количество позиций  на  старнице
+        return $this->pnumber;
+    }
+    
+    public function get_page_link() {
+        //  Колличество ссылок слева и справа от текущей страницы
+        return $this->page_link;
+    }
+    
+    public function get_parameters() {
+        //  Дополнительные параметры которые необходимо пеедать по ссылке
+        return $this->parameters;
+    }
+    
+    //  Возвращает массив строк файла по номеру страницы $index
+    
 }
