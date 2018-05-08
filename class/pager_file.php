@@ -9,7 +9,7 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа pager_file
  * Файловая постраничная навигация
- * V 0.1.0
+ * V 0.1.1
  */
 
 //  Выставляем уровень обработки ошибок
@@ -35,6 +35,7 @@ class pager_file extends pager{
                         $this->page_link = $page_link;
                         $this->parameters = $parameters;
     }
+    //  Метод открытия файла $filename
     public function get_total() {
         $countline = 0;
         //  Открываем файл
