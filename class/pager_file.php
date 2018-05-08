@@ -90,7 +90,7 @@ class pager_file extends pager{
         if(!$fd){
             return 0;
         }
-        //  Номер, ачиная с которого следует выбрать строки файла
+        //  Номер, начиная с которого следует выбрать строки файла
         $first =($page - 1)*$this->get_pnumber();
         for($i =0; $i < $total; $i++){
             $str = fgets($fd, 10000);

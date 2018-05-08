@@ -13,7 +13,7 @@
 
     require_once ("config/class_config.php");
     //  Объявляем объект постраничной навигации
-    $obj = new pager_file("words.txt");
+    $obj = new pager_file("words_test.txt");
     
     //  Выводим содержимое текущей страницы
     $arr = $obj->get_page();

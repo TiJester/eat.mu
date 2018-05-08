@@ -17,7 +17,6 @@
 error_reporting(E_ALL & ~E_NOTICE);
 
 abstract class pager {
-    //  
     abstract function get_total();
     abstract function get_pnumber();
     abstract function get_page_link();
@@ -42,55 +41,56 @@ abstract class pager {
         
         //  Проверяем есть ли ссылка слева
         if($page - $this->get_page_link() > 1){
-            $return_page .= "<a href=$_SERVER[PHP_SELF]"."?page=1{$this->get_parameters()} class=main_txt_lnk>[1-{$this->get_pnumber()}]</a>&nbsp;&nbsp;...&nbsp;&nbsp;";
+            $return_page .= "<a href=$_SERVER[PHP_SELF]?page=1{$this->get_parameters()}>[1-{$this->get_pnumber()}]</a>&nbsp;&nbsp;...&nbsp;&nbsp;";
             //  Есть
             for($i = $page - $this->get_page_link(); $i < $page; $i++){
-                $return_page .= "&nbsp; <a href=$_SERVER[PHP_SELF]"."?page=$i{$this->get_parameters()} class=main_txt_lnk>[".(($i - 1)*$this->get_pnumber() + 1). "-".$i * $this->get_pnumber()."]</a>$nbsp;";
+                $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i - 1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>$nbsp;";
             }
         }
         else {
             //  Нет
-            for($i = 1; $i < $page; $i++){
-                $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF] ?page = $i{$this->get_parameters()} class = main_txt_lnk>[".(($i - 1) * $this->get_pnumber() +1). "-" .$i * $this->get_pnumber()."]</a>&nbsp;";
+            for($i = 1; $i<$page; $i++){
+                $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i-1)*$this->get_pnumber()+1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
             }
         }
         
         //  Проверяем есть ли ссылки справа
         if($page + $this->get_page_link() < $number){
             //  Есть
-            for($i = $page; $i <= $page + $this->get_page_link(); $i++){
+            for($i = $page; $i<=$page+$this->get_page_link(); $i++){
                 if($page == $i){
-                    $return_page .= "&nbsp;[".(($i - 1) * $this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
+                    $return_page .= "&nbsp;[".(($i-1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]&nbsp;";
                 }
                 else{
-                    $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()} class=main_txt_lnk [".(($i - 1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
+                    $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i-1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
                 }
             }
-            $return_page .= "&nbsp;...&nbsp;<a href=$_SERVER[PHP_SELF]?page=$number{$this->get_parameters()} class=mail_txt_lnk[".(($number - 1)*$this->get_pnumber() + 1)."{$this->get_total()}]</a>$nbsp;";
+            $return_page .= "&nbsp;...&nbsp;&nbsp;<a href=$_SERVER[PHP_SELF]?page=$number{$this->get_parameters()}>[".(($number-1)*$this->get_pnumber() + 1)."-{$this->get_total()}]</a>$nbsp;";
         }
         else{
             //  нет
             for($i = $page; $i <= $number; $i++){
                 if($number == $i){
                     if($page == $i){
-                        $return_page .= "&nbsp;[".(($i - 1)*$this->get_pnumber() + 1)."- {$this->get_total()}]&nbsp;";
+                        $return_page .= "&nbsp;[".(($i - 1)*$this->get_pnumber() + 1)."-{$this->get_total()}]&nbsp;";
                     }
                     else{
-                        $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()} class=min_txt_lnk>[".(($i - 1)*$this->get_pnumber() + 1)."- {$this->get_total()}]</a>&nbsp;";
+                        $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i - 1)*$this->get_pnumber() + 1)."-{$this->get_total()}]</a>&nbsp;";
                     }
                 }
                 else{
                     if($page == $i){
-                        $return_page .= "&nbsp;[".(($i - 1)* $this->get_pnumber() + 1). "-".$i*$this->get_pnumber()."]&nbsp;";
+                        $return_page .= "&nbsp;[".(($i - 1)* $this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]&nbsp;";
                     }
                     else{
-                        $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()} class=main_txt_nlk>[".(($i - 1)*$this->get_pnumber() + 1). "-" .($i*$this->get_pnumber())."]</a>&nbsp;";
+                        $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i - 1)*$this->get_pnumber() + 1)."-".($i*$this->get_pnumber())."]</a>&nbsp;";
                     }
                 }
             }
         }
         return $return_page;
     }
+    
     
     //  Альтернативный вид постраничной навигации
     public function print_page(){
@@ -110,46 +110,46 @@ abstract class pager {
         }
         
         //  Ссылка на первую страницу
-        $return_page .= "<a href='$_SERVER[PHP_SELF]?page=1{$this->get_parameters()}' class=main_txt_lnk>&lt;&lt;</a> ... ";
+        $return_page .= "<a href='$_SERVER[PHP_SELF]?page=1{$this->get_parameters()}'>&lt;&lt;</a> ... ";
         
         //  Выводим ссылку назад если это не первая страница
         if($page != 1){
-            $return_page .= "<a href='$_SERVER[PHP_SELF]?page=".($page - 1)."($this->get_parameters())' class=main_txt_lnk>&lt;</a> ...";
+            $return_page .= "<a href='$_SERVER[PHP_SELF]?page=".($page - 1)."{$this->get_parameters()}'>&lt;</a> ...";
         }
         
         //  Выводим предыдущие элементы
         if($page > $this->get_page_link() + 1){
             for($i = $page - $this->get_page_link(); $i < $page; $i++){
-                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i'class=main_txt_lnk>$i</a>";
+                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i'>$i</a>";
             }
         }
         else {
             for($i = 1; $i < $page; $i++){
-                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i' class=main_txt_lnk>$i</a>";
+                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i'>$i</a>";
             }
         }
         
         //  Выводим текущий элемент
         $return_page .= "$i";
-        //  Выводим селедующие элементы
+        //  Выводим следующие элементы
         if($page + $this->get_page_link() < $number){
             for($i = $page + 1; $i <= $page + $this->get_page_link(); $i++){
-                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i' class=main_txt_lnk>$i</a>";
+                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i'>$i</a>";
             }
         }
         else {
             for($i = $page + 1; $i <= $number; $i++){
-                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i' class=main_txt_lnk>$i</a>";
+                $return_page .= "<a href='$_SERVER[PHP_SELF]?page=$i'>$i</a>";
             }
         }
         
         //  Выводим ссылку вперед если это не последняя страница
         if($page != $number){
-            $return_page .= " ... <a href='$_SERVER[PHP_SELF]?page=".($page + 1). "{$this->get_parameters()}' class=main_txt_lnk>&gt;</a>";
+            $return_page .= " ... <a href='$_SERVER[PHP_SELF]?page=".($page + 1). "{$this->get_parameters()}'>&gt;</a>";
         }
         
         //  Ссылка на соследную страницу
-        $return_page .= " ... <a href='$_SERVER[PHP_SELF]?page=$number{$this->get_parameters()}' class=main_txt_lnk>&gt;&gt;</a>";
+        $return_page .= " ... <a href='$_SERVER[PHP_SELF]?page=$number{$this->get_parameters()}'>&gt;&gt;</a>";
         
         return $return_page;
     }
