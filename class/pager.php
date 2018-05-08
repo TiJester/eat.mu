@@ -10,7 +10,7 @@
  * Описание класа pager
  * Абстрактный класс постраничной навигации __toString()
  * Альтернативный вывод навигации print_page()
- * V 0.2.0
+ * V 0.2.1
  */
 
 //  Выставляем уровень обработки ошибок
@@ -44,7 +44,7 @@ abstract class pager {
             $return_page .= "<a href=$_SERVER[PHP_SELF]?page=1{$this->get_parameters()}>[1-{$this->get_pnumber()}]</a>&nbsp;&nbsp;...&nbsp;&nbsp;";
             //  Есть
             for($i = $page - $this->get_page_link(); $i < $page; $i++){
-                $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i - 1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>$nbsp;";
+                $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i - 1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
             }
         }
         else {
@@ -65,7 +65,7 @@ abstract class pager {
                     $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i-1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
                 }
             }
-            $return_page .= "&nbsp;...&nbsp;&nbsp;<a href=$_SERVER[PHP_SELF]?page=$number{$this->get_parameters()}>[".(($number-1)*$this->get_pnumber() + 1)."-{$this->get_total()}]</a>$nbsp;";
+            $return_page .= "&nbsp;...&nbsp;&nbsp;<a href=$_SERVER[PHP_SELF]?page=$number{$this->get_parameters()}>[".(($number-1)*$this->get_pnumber() + 1)."-{$this->get_total()}]</a>&nbsp;";
         }
         else{
             //  нет
@@ -110,11 +110,11 @@ abstract class pager {
         }
         
         //  Ссылка на первую страницу
-        $return_page .= "<a href='$_SERVER[PHP_SELF]?page=1{$this->get_parameters()}'>&lt;&lt;</a> ... ";
+        $return_page .= "<a href='$_SERVER[PHP_SELF]?page=1{$this->get_parameters()}'>&lt;&lt;</a>...";
         
         //  Выводим ссылку назад если это не первая страница
         if($page != 1){
-            $return_page .= "<a href='$_SERVER[PHP_SELF]?page=".($page - 1)."{$this->get_parameters()}'>&lt;</a> ...";
+            $return_page .= "<a href='$_SERVER[PHP_SELF]?page=".($page - 1)."{$this->get_parameters()}'>&lt;</a>...";
         }
         
         //  Выводим предыдущие элементы
