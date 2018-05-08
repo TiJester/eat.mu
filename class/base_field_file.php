@@ -7,15 +7,15 @@
 
 /**
  * 2018(С) Шевченко Г.Ю.
- * Описание класа base_filed_file
+ * Описание класа base_field_file
  * Загрузка файла
- * V 0.1.1
+ * V 0.1.2
  */
 
 //  Выставляем уровень обработки ошибок
 error_reporting(E_ALL & ~E_NOTICE);
 
-class base_filed_file {
+class base_field_file {
     //  Дириктория назначения
     protected $dir;
     //  Префикс
