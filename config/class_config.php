@@ -8,7 +8,7 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Конфигурация классов CMS
- * V 0.1.5
+ * V 0.1.6
  * 16+3+3 включений 22
  */
 
@@ -26,11 +26,11 @@
     require_once ("class/base_field_hidden_int.php"); //    Класс скрытого поля с целочисленым значением
     require_once ("class/base_field_select.php"); //    Класс списка
     require_once ("class/base_field_radio.php"); //    Класс радио-кнопки
-    require_once ("class/base_filed_checkbox.php"); //    Класс флажек
-    require_once ("class/base_filed_datetime.php"); //  Класс даты и времени
-    require_once ("class/base_filed_paragraph.php");    // Класс параграфа
-    require_once ("class/base_filed_title.php");    //  Класс заголовок
-    require_once ("class/base_filed_file.php"); //  Класс загрузки файла
+    require_once ("class/base_field_checkbox.php"); //    Класс флажек
+    require_once ("class/base_field_datetime.php"); //  Класс даты и времени
+    require_once ("class/base_field_paragraph.php");    // Класс параграфа
+    require_once ("class/base_field_title.php");    //  Класс заголовок
+    require_once ("class/base_field_file.php"); //  Класс загрузки файла
     
     require_once ("class/form.php"); // Класс формирование формы
     require_once ("class/pager.php");   //  Базовый класс постраничной навигации
