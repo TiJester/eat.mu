@@ -8,8 +8,8 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Конфигурация классов CMS
- * V 0.1.4
- * 16 включений
+ * V 0.1.5
+ * 16+3+3 включений 22
  */
 
     //  Выставляем уровень обработки ошибок
@@ -27,8 +27,14 @@
     require_once ("class/base_field_select.php"); //    Класс списка
     require_once ("class/base_field_radio.php"); //    Класс радио-кнопки
     require_once ("class/base_filed_checkbox.php"); //    Класс флажек
+    require_once ("class/base_filed_datetime.php"); //  Класс даты и времени
+    require_once ("class/base_filed_paragraph.php");    // Класс параграфа
+    require_once ("class/base_filed_title.php");    //  Класс заголовок
+    require_once ("class/base_filed_file.php"); //  Класс загрузки файла
     
     require_once ("class/form.php"); // Класс формирование формы
+    require_once ("class/pager.php");   //  Базовый класс постраничной навигации
+    require_once ("class/pager_file.php");  //  Класс навигации по файлу
     
     require_once ("class/ExceptionMember.php"); //  Исключения к несуществующему элементу
     require_once ("class/ExceptionMySql.php"); //  Исключения Запросов
