@@ -3,7 +3,7 @@
 TiJester
 UA Odessa 
 Поиск по ключевому слову
-V 0.1.0
+V 0.1.1
 -->
 <html>
     <head>
@@ -32,7 +32,7 @@ V 0.1.0
         
         
             //  Выводим HTML-форму
-            $form->print_form();
+            $form->print_form_get();
         
         //  Обработчик формы
         if(!empty($_GET)){
