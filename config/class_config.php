@@ -8,8 +8,8 @@
 /**
  * 2018(С) Шевченко Г.Ю.
  * Конфигурация классов CMS
- * V 0.1.6
- * 16+3+3 включений 22
+ * V 0.1.7
+ * 16+3+4 включений 23
  */
 
     //  Выставляем уровень обработки ошибок
@@ -35,6 +35,7 @@
     require_once ("class/form.php"); // Класс формирование формы
     require_once ("class/pager.php");   //  Базовый класс постраничной навигации
     require_once ("class/pager_file.php");  //  Класс навигации по файлу
+    require_once ("class/pager_file_search.php");   //  Класс навигации и поиска по файлу
     
     require_once ("class/ExceptionMember.php"); //  Исключения к несуществующему элементу
     require_once ("class/ExceptionMySql.php"); //  Исключения Запросов
