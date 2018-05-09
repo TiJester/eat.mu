@@ -9,8 +9,10 @@
 * 2018(С) Шевченко Г.Ю.
 * Описание класа pager_file_search
 * Файловая постраничная навигация и поиск
-* V 0.1.0
+* V 0.1.1
 */
+  // Выставляем уровень обработки ошибок 
+  error_reporting(E_ALL & ~E_NOTICE);
 
 //  Подключаем базовый класс
 require_once ("class/pager_file.php");
@@ -48,11 +50,12 @@ class pager_file_search extends pager_file{
         }
         return $countline;
     }
+    
     //  Возвращает массив строк файла по номеру страницы
     public function get_page(){
         //  Текущая страница
         $page = $_GET['page'];
-        if(empty($page)) $page =1;
+        if(empty($page)) $page = 1;
         //  Колличество записей в файле
         $total = $this->get_total();
         //  Вычисляем число страниц в системе
@@ -61,7 +64,7 @@ class pager_file_search extends pager_file{
             $number++;
         }
         //  Проверяем попадает ли запрашиваемый номер страницы в интервал от 1 до get_total()
-        if($page<=0||$page>$number){
+        if($page <=0 || $page>$number){
             return 0;
         }
         //  Извлекаем позиции текущей страницы
@@ -71,19 +74,23 @@ class pager_file_search extends pager_file{
             return 0;
         }
         //  Номер, начиная с котрого следует выбирать строки файла
-        $first = ($page-1)*$this->get_pnumber();
+        $first = ($page -1)*$this->get_pnumber();
         while (!feof($fd)){
             $str = fgets($fd, 10000);
-            if(preg_match("|^". preg_quote($this->search)."i", $str)){
+            if(preg_match("|^". preg_quote($this->search)."|i", $str))
+                ////////////////////////////    
+                    {
                 $countline++;
                 //  Пока не достигнут номер first досрочно заканчиваем итерацию
-                if($countline < $first + 1){
-                    continue;
+                if($countline < $first) {
+                    continue;                    
+                }
+                //  Если достигнут конец выборки досрочно покидаем цикл
+                if($countline > $first + $this->get_pnumber()-1) {
+                    break;                    
                 }
                 //  Помещаем строки файла в массив который будет возвращен методом
                 $arr[] = $str;
-                //  Если достигнут конец выборки досрочно покидаем цикл
-                if($contline >= $first + $this->get_pnumber()) break;
             }
         }
         //  Закрываем файл
