@@ -9,7 +9,7 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа form
  * HTML-формы
- * V 0.1.1
+ * V 0.1.2
  */
 class form {
     //  Массив элементов управления
@@ -52,7 +52,7 @@ class form {
         }
     }
     
-    //   Вывод HTML-формы в окно браузера
+    //   Вывод HTML-формы в окно браузера метод POST
     public function print_form()
     {
         $enctype = "";
@@ -92,6 +92,85 @@ class form {
         
         //  Выводим HTML-форму
         echo "<form name=form $enctype method=post>";
+        echo "<table>";
+        if(!empty($this->fields))
+        {
+            foreach ($this->fields as $obj)
+            {
+                //  Получаем название поля, и его HTML-представление
+                list($caption, $tag, $help, $aleternative) = $obj->get_html();
+                if(is_array($tag)) $tag = implode("<br>", $tag);
+                switch($obj->type)
+                {
+                    case "hidden":
+                        //  Скрытое поле
+                        echo $tag;
+                        break;
+                    case "paragraph":
+                    case "title": //    Заголовок
+                        echo "<tr> <td $style $class colspan=2 valign=top>$tag</td> <tr>\n";
+                        break;
+                    case "city":
+                        echo "tr <td width=100 $style $class valign=top>$caption:</td> <td $style $class>$tag</td> </tr>\n";
+                        echo "<tr> <td width=100 $style $class valign=top> Если города<br> нет в списке: </td> <td $style $class>$aleternative $help</td> </tr> \n";
+                        break;
+                    default:
+                        //  Элементы упраления по умолчанию
+                        echo "<tr> <td width=150 $style $class valign=top> $caption:</td> <td $style $class valign=top> $tag </td> <tr>\n";
+                        if(!empty($help))
+                        {
+                            echo "<tr> <td>&nbsp;</td> <td $style $class valign=top>$help</td> </tr>";
+                        }
+                        break;
+                }
+            }
+        }
+        
+        //  Выводим кнопку подтверждения
+        echo "<tr> <td $style $class></td> <td $style $class> <input class=button type=submit value=\"".htmlspecialchars($this->button_name, ENT_QUOTES)."\"> </td> </tr>\n";
+        echo "</table>";
+        echo "</form>";
+    }
+    //   Вывод HTML-формы в окно браузера метод POST
+    public function print_form_get()
+    {
+        $enctype = "";
+        if(!empty($this->fields))
+        {
+            foreach($this->fields as $obj)
+            {
+                //  Назначаем всем элементам упралвения единый стиль
+                if(!empty($this->css_fld_class))
+                {
+                    $obj->css_class = $this->css_fld_class;
+                }
+                if(!empty($this->css_fld_class))
+                {
+                    $obj->css_style = $this->css_fld_style;
+                }
+                //  Проверка, есть ли среди элементов управления поля file, если имеется,
+                //  включаем строку enctype='multipart/form-data'
+                if($obj->type == "file")
+                {
+                    $enctype = "enctype='multipart/form-data'";
+                }
+            }
+        }
+        
+        // Если элементы управлние не пусты, учитываем их
+        if(!empty($this->css_td_style))
+        {
+            $style = "style=\"".$this->css_fld_class."\"";
+        }
+        else $style = "";
+        if(!empty($this->css_td_class))
+        {
+            $class = "class=\"".$this->css_td_class."\"";
+        }
+        else $class = "";
+        
+        //  Выводим HTML-форму
+        echo "<form name=form $enctype method=get>";
         echo "<table>";
         if(!empty($this->fields))
         {
