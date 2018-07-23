@@ -9,7 +9,7 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа pager_dir
  * Постаничная навигация для директории
- * V 0.1.0
+ * V 0.1.1
  */
 
 //  Выставляем уровень обработки ошибок
@@ -19,7 +19,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 require_once ("pager.php");
 
 class pager_dir extends pager{
-    //  Имядиректории
+    //  Имя директории
     protected $dirname;
     //  Колличество позиций
     private $pnumber;
@@ -70,16 +70,16 @@ class pager_dir extends pager{
     public function get_page(){
         //  Текущая страница
         $page = $_GET['page'];
-        if(empty($page)){//
-            $page = 1;
-        }//
+        if(empty($page))  $page = 1;
         //  Количество записей в файле 
         $total = $this->get_total();
-        //  Вычисляем кличество страниц в системе
+        //  Вычисляем количество страниц в системе
         $number = (int)($total/$this->get_pnumber());
-        if((float)($total/$this->get_pnumber()) - $number != 0) $number++;
-        //  Проверяем, попоодает ли запрашиваемый номер страницы в интервал от 1 до get_total()
-        if($page <= 0 || $page > $number) {
+        if ((float) ($total / $this->get_pnumber()) - $number != 0) {
+            $number++;
+        }
+        //  Проверяем, попаодает ли запрашиваемый номер страницы в интервал от 1 до get_total()
+        if ($page <= 0 || $page > $number) {
             return 0;
         }
         //  Извлекаем позиции текущей страницы
@@ -87,7 +87,7 @@ class pager_dir extends pager{
         //  Номер,начиная с которого следует выбирать стоки файла
         $first = ($page - 1)*$this->get_pnumber();
         //  Открываем директорию
-        if(($dir = opendir($this->dirname)) === FALSE){
+        if (($dir = opendir($this->dirname)) === FALSE) {
             return 0;
         }
         $i = -1;
@@ -97,9 +97,9 @@ class pager_dir extends pager{
                 //  Увеличиваем счетчик
                 $i++;
                 //  Пока не достигнут номер $first досрочно заканчиваем итерецию
-                if($i < $first)                                 continue;
+                if ($i < $first)continue;
                 //  Если достигнут конец выборки досрочно покидаем цикл
-                if($i > $first + $this->get_pnumber() - 1)                    break;
+                if ($i > $first + $this->get_pnumber() - 1)break;
                 //  Помещаем пути файлам в массив который будет возвращен методом
                 $arr[] = $this->dirname."/".$file;
             }
