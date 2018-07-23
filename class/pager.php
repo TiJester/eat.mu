@@ -10,7 +10,7 @@
  * Описание класа pager
  * Абстрактный класс постраничной навигации __toString()
  * Альтернативный вывод навигации print_page()
- * V 0.2.2
+ * V 0.2.3
  */
 
 //  Выставляем уровень обработки ошибок
@@ -41,7 +41,7 @@ abstract class pager {
         
         //  Проверяем есть ли ссылка слева
         if($page - $this->get_page_link() > 1){
-            $return_page .= "<a href=$_SERVER[PHP_SELF]?page=1{$this->get_parameters()}>[1-{$this->get_pnumber()}]</a>&nbsp;&nbsp;...&nbsp;&nbsp;";
+            $return_page .= "<a href=$_SERVER[PHP_SELF]?page=1{$this->get_total()}>[1-{$this->get_pnumber()}]</a>&nbsp;&nbsp;...&nbsp;&nbsp;";
             //  Есть
             for($i = $page - $this->get_page_link(); $i < $page; $i++){
                 $return_page .= "&nbsp;<a href=$_SERVER[PHP_SELF]?page=$i{$this->get_parameters()}>[".(($i - 1)*$this->get_pnumber() + 1)."-".$i*$this->get_pnumber()."]</a>&nbsp;";
