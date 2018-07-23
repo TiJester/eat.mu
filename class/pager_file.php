@@ -9,11 +9,14 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа pager_file
  * Файловая постраничная навигация
- * V 0.1.1
+ * V 0.1.2
  */
 
 //  Выставляем уровень обработки ошибок
 error_reporting(E_ALL & ~E_NOTICE);
+
+//  Подключаем базовый класс
+require_once ("class/pager.php");
 
 class pager_file extends pager{
     //  Имя файла
