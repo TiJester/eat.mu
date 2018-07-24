@@ -12,7 +12,7 @@
  * V 0.1.1
  */
 
-//  Выставляем уровень обработки ошибок
+//  Выставляем уровень обработки ошибок  
 error_reporting(E_ALL & ~E_NOTICE);
 
 //  Подключаем базовый класс
@@ -52,6 +52,7 @@ class pager_dir extends pager{
             closedir($dir);
         }
         return $countline;
+        
     }
     
     public function get_pnumber() {
@@ -70,15 +71,17 @@ class pager_dir extends pager{
     public function get_page(){
         //  Текущая страница
         $page = $_GET['page'];
-        if(empty($page))  $page = 1;
+        if (empty($page)) {
+            $page = 1;
+        }
         //  Количество записей в файле 
         $total = $this->get_total();
         //  Вычисляем количество страниц в системе
         $number = (int)($total/$this->get_pnumber());
-        if ((float) ($total / $this->get_pnumber()) - $number != 0) {
+        if ((float)($total/$this->get_pnumber()) - $number != 0) {
             $number++;
         }
-        //  Проверяем, попаодает ли запрашиваемый номер страницы в интервал от 1 до get_total()
+        //  Проверяем, попадает ли запрашиваемый номер страницы в интервал от 1 до get_total()
         if ($page <= 0 || $page > $number) {
             return 0;
         }
