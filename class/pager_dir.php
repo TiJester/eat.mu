@@ -9,26 +9,19 @@
  * 2018(С) Шевченко Г.Ю.
  * Описание класа pager_dir
  * Постаничная навигация для директории
- * V 0.1.1
+ * V 0.1.2
  */
 
 //  Выставляем уровень обработки ошибок  
 error_reporting(E_ALL & ~E_NOTICE);
 
 //  Подключаем базовый класс
-require_once ("pager.php");
+require_once ("pager_abstract.php");
 
-class pager_dir extends pager{
-    //  Имя директории
-    protected $dirname;
-    //  Колличество позиций
-    private $pnumber;
-    //  Колличество ссылок слево и справа от текущей страницы
-    private $page_link;
-    //  Параметры
-    private $parameters;
-    //  Констуктор
-    public function __constuct($dirname,
+class pager_dir extends pager_abstract{
+    //  Конструктор
+    public function __constuct(
+            $dirname,
             $pnumber = 10,
             $page_link = 3,
             $parameters = "")
@@ -42,7 +35,7 @@ class pager_dir extends pager{
     public function get_total() {
         $countline= 0;
         //  Открываем директорию
-        if (($dir = opendir($this->dirname)) !== FALSE)
+        if(($dir = opendir($this->dirname)) !== FALSE)
         {
             while(($file = readdir($dir)) !== FALSE){
                 //  Если текущая позиция являеться файлом учитываем ее
@@ -51,27 +44,14 @@ class pager_dir extends pager{
             //  Закрываем директорию
             closedir($dir);
         }
-        return $countline;
-        
+        return $countline;   
     }
     
-    public function get_pnumber() {
-        //  Количество позиций на странице
-        return $this->pnumber;
-    }
-    public function get_page_link(){
-        //  Количество ссылок слева и справа от текущей страницы
-        return $this->page_link;
-    }
-    public function get_parameters() {
-        //  Дополнительные параметры которые необходимо передать по сылке
-        return $this->parameters;
-    }
     //  Возвращает массив строк файла по номмеру страницы $index
     public function get_page(){
         //  Текущая страница
         $page = $_GET['page'];
-        if (empty($page)) {
+        if(empty($page)) {
             $page = 1;
         }
         //  Количество записей в файле 
