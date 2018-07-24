@@ -14,7 +14,7 @@
  */
 
 //  Выставляем уровень обработки ошибок
-error_reporting(E_ALL & ~E_NOTICE);
+ error_reporting(E_ALL & ~E_NOTICE);
 
 abstract class pager {
     abstract function get_total();
@@ -26,7 +26,7 @@ abstract class pager {
     public function __toString() {
         //  Строка для возвращаемого резульата
         $return_page = "";
-        
+
         //  Через GET-параметр page передаеться номер текущей страницы
         $page = intval($_GET['page']);
         if(empty($page)){
