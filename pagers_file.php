@@ -12,6 +12,7 @@
  */
 
     require_once ("config/class_config.php");
+    
     //  Объявляем объект постраничной навигации
     $obj = new pager_file("words_test.txt", 25, 4);
     //  Выводим ссылки на другие страницы
