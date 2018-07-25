@@ -9,7 +9,7 @@
 * 2018(С) Шевченко Г.Ю.
 * Описание класа pager_mysqli
 * Постраничная навигация для базы данных
-* V 0.1.0
+* V 0.1.1
 */
   // Выставляем уровень обработки ошибок 
   error_reporting(E_ALL & ~E_NOTICE);
@@ -17,7 +17,8 @@
   //    Подключаем все необходимые классы
   require_once ("config/class_config.php");
   //    Подклчаем конфиг для подключения к БД
-  require_once ("config/config.php");
+  require_once ($_SERVER['DOCUMENT_ROOT']."/config/config.php");
+  
   
 class pager_mysqli extends pager{
     //  Имя таблицы
