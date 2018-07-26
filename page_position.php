@@ -1,5 +1,4 @@
 <?php
-
 /* 
  * TiJester
  * UA Odessa
@@ -12,15 +11,15 @@
  */
 
     //  Устанавливаем соединение с БД
-    require_once("config/config.php");
+    require_once("/config/config.php");
 
     //  Подключаем классы (постраничной навигации)
-    require_once("config/class_config.php");
+    require_once("/config/class_config.php");
     
     try{
         //  Объявляем объект постраничнной навигации
         $obj = new pager_mysqli(
-                "postions",
+                "positions",
                 "",
                 "ORDER BY name");
         //  Выводим содержимое текущей страницы
